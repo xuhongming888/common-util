@@ -17,12 +17,30 @@ public class NumberUtil {
         return roundNumber;
     }
 
+    //四舍五入都将永久保留2位小数
+    public static String round2(Double number, int decimalCount) {
+        if (number != null){
+            BigDecimal bigDecimal = new BigDecimal(number).setScale(decimalCount, BigDecimal.ROUND_HALF_UP);
+            String result = "0";
+            if (bigDecimal.doubleValue() != 0) {
+                result = String.format("%.2f", bigDecimal.doubleValue());
+            }
+            return result;
+        }
+        return "0";
+    }
+
+
+
     //除法器
     public static double divider(long divisor, long dividend, int decimalCount){
         double result = (double)divisor/dividend;
         return round(result, 2);
     }
 
-
+    public static double divider(double divisor, long dividend, int decimalCount){
+        double result = (double)divisor/dividend;
+        return round(result, 2);
+    }
 
 }

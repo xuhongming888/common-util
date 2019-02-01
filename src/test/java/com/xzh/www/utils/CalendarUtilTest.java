@@ -74,8 +74,6 @@ public class CalendarUtilTest {
 
         System.out.println("startDate : " + df.format(startDate) + "; endDate1: " + df.format(endDate1) + "; endDate2: " + df.format(endDate2));
         System.out.println("endDat1 < startDate : " + endDate1.before(startDate) + ";  startDate < endDate2: " + startDate.before(endDate2));
-
-
     }
 
 }
