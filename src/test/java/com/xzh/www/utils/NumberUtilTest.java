@@ -11,12 +11,4 @@ public class NumberUtilTest {
 
 
 
-    @Test
-    public void testDivider(){
-        System.out.println(NumberUtil.round2(0d, 2));
-
-    }
-
-
-
 }
