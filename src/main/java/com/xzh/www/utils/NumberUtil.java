@@ -1,6 +1,7 @@
 package com.xzh.www.utils;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
  * @Description:
@@ -17,30 +18,21 @@ public class NumberUtil {
         return roundNumber;
     }
 
-    //四舍五入都将永久保留2位小数
-    public static String round2(Double number, int decimalCount) {
-        if (number != null){
-            BigDecimal bigDecimal = new BigDecimal(number).setScale(decimalCount, BigDecimal.ROUND_HALF_UP);
-            String result = "0";
-            if (bigDecimal.doubleValue() != 0) {
-                result = String.format("%.2f", bigDecimal.doubleValue());
-            }
-            return result;
-        }
-        return "0";
-    }
-
-
-
-    //除法器
+    //整数除法器
     public static double divider(long divisor, long dividend, int decimalCount){
         double result = (double)divisor/dividend;
         return round(result, 2);
     }
 
-    public static double divider(double divisor, long dividend, int decimalCount){
-        double result = (double)divisor/dividend;
-        return round(result, 2);
+    /**
+    * @Description: 将小数number转换为百分比，decimalCount决定百分比后的小数位数
+    * @Author: created by xuzh1 on 2019/8/5
+    */
+    public static String decimal2Percent(double number, int decimalCount){
+        NumberFormat nf = NumberFormat.getPercentInstance();
+        nf.setMinimumFractionDigits(decimalCount);
+        return nf.format(number);
     }
+
 
 }
