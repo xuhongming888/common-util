@@ -100,12 +100,12 @@ public class TimeUtils {
 
     /**
     **
-    * @Description: get midnight of past
-    * @Param: [past, fromat]
+    * @Description: get midnight of one day in the past
+    * @Param: [past, fromat, timeZone]
     * @Author: xuzh1
     * @Date: 2020/7/15
     */
-    public static String getMidnigtOfPastDAY(int past, String timeFromat, String timeZone){
+    public static String getMidnigtOfDAY(int past, String timeFromat, String timeZone){
         Calendar calendar = Calendar.getInstance();
 
         long pastTimestamp = System.currentTimeMillis()/(24*3600*1000) * (24*3600*1000) - (past*24*3600*1000);
@@ -141,7 +141,7 @@ public class TimeUtils {
 
     public static void main(String[] args) {
 //        System.out.println(getMidnigtOfPastDAY(1, "yyyy-MM-dd'T'HH:mm:ss", "GMT+00"));
-        System.out.println(getMidnigtOfPastDAY(1, "yyyy-MM-dd'T'HH:mm:ss", "GMT+08"));
+        System.out.println(getMidnigtOfDAY(1, "yyyy-MM-dd'T'HH:mm:ss", "GMT+08"));
     }
 
 }
