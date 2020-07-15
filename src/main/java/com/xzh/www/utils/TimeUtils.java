@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static com.xzh.www.constants.Constatns.FORMAT_YYYY_MM_DD_HH_MM_SS;
+import static com.xzh.www.constants.TimeConstatns.FORMAT_YYYY_MM_DD_HH_MM_SS;
 
 /**
  * @Description: 时间格式转换工具
@@ -81,20 +81,6 @@ public class TimeUtils {
     }
 
 /******获取过去或者未来 任意天内的日期数组*************/
-    /**
-     * 获取过去或者未来 任意天内的日期数组
-     * @param intervals      intervals天内
-     * @return              日期数组
-     */
-    public static ArrayList<String> test(int intervals ) {
-        ArrayList<String> pastDaysList = new ArrayList<>();
-        ArrayList<String> fetureDaysList = new ArrayList<>();
-        for (int i = 0; i <intervals; i++) {
-            pastDaysList.add(getPastDate(i));
-            fetureDaysList.add(getFetureDate(i));
-        }
-        return pastDaysList;
-    }
 
     /**
      * 获取过去第几天的日期
@@ -111,12 +97,37 @@ public class TimeUtils {
         return result;
     }
 
+
+    /**
+    **
+    * @Description: get midnight of past
+    * @Param: [past, fromat]
+    * @Author: xuzh1
+    * @Date: 2020/7/15
+    */
+    public static String getMidnigtOfPastDAY(int past, String timeFromat, String timeZone){
+        Calendar calendar = Calendar.getInstance();
+
+        long pastTimestamp = System.currentTimeMillis()/(24*3600*1000) * (24*3600*1000) - (past*24*3600*1000);
+
+        calendar.setTimeInMillis(pastTimestamp);
+        Date date = calendar.getTime();
+
+        SimpleDateFormat sdf = new SimpleDateFormat(timeFromat);
+        sdf.setTimeZone(TimeZone.getTimeZone(timeZone));
+
+        return sdf.format(date);
+    }
+
+
+
+
     /**
      * 获取未来 第 past 天的日期
      * @param past
      * @return
      */
-    public static String getFetureDate(int past) {
+    public static String getFutureDate(int past) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + past);
         Date today = calendar.getTime();
@@ -126,5 +137,11 @@ public class TimeUtils {
         return result;
     }
 /*****************************************************************/
+
+
+    public static void main(String[] args) {
+//        System.out.println(getMidnigtOfPastDAY(1, "yyyy-MM-dd'T'HH:mm:ss", "GMT+00"));
+        System.out.println(getMidnigtOfPastDAY(1, "yyyy-MM-dd'T'HH:mm:ss", "GMT+08"));
+    }
 
 }
